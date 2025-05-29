@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Redactor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Upload Document for PII/PSI Redaction</h1>
+    <p>Drag & Drop or Click to Select a .docx or .pptx file.</p>
+
+    <form id="upload-form" action="/upload" method="post" enctype="multipart/form-data">
+        <div id="drop-zone">
+            <p>Drop file here</p>
+            <input type="file" id="file-input" name="file" accept=".docx,.pptx" required>
+            <p id="file-name">No file selected</p>
+        </div>
+        <button type="submit">Upload and Redact</button>
+    </form>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for category, message in messages %}
+          <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <script>
+        const dropZone = document.getElementById('drop-zone');
+        const fileInput = document.getElementById('file-input');
+        const fileNameDisplay = document.getElementById('file-name');
+
+        // Highlight drop zone when dragging over
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('drag-over');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('drag-over');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('drag-over');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+                 fileNameDisplay.textContent = files[0].name; // Display file name
+            }
+        });
+
+        // Trigger file input click when drop zone is clicked
+        dropZone.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        // Update file name display when file is selected via click
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                fileNameDisplay.textContent = fileInput.files[0].name;
+            } else {
+                 fileNameDisplay.textContent = 'No file selected';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+body {
+    font-family: sans-serif;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+#upload-form {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    max-width: 500px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+#drop-zone {
+    border: 2px dashed #ccc;
+    border-radius: 5px;
+    padding: 40px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+#drop-zone.drag-over {
+    border-color: #3498db;
+    background-color: #eaf6ff;
+}
+
+#drop-zone p {
+    margin: 5px 0;
+    color: #777;
+}
+
+#file-input {
+    display: none; /* Hide the actual file input */
+}
+
+#file-name {
+    font-style: italic;
+    color: #555;
+    margin-top: 10px;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.flashes {
+    list-style-type: none;
+    padding: 0;
+    margin: 15px auto;
+    max-width: 500px;
+    text-align: center;
+}
+
+.flashes li {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.flashes .error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.flashes .success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}

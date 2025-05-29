@@ -1,0 +1,7 @@
+Flask
+python-docx
+python-pptx
+presidio-analyzer
+presidio-anonymizer
+stanza
+torch
